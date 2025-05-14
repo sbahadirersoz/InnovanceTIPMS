@@ -1,0 +1,56 @@
+services:
+  innovance-userdb:
+    image: postgres
+    environment:
+      POSTGRES_USER: sbahadirersoz
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: userservice-db
+    ports:
+        - 5433:5432
+    volumes:
+      - innovance-userdb-data:/var/lib/postgresql/data
+  innovance-projectdb:
+    image: postgres
+    environment:
+      POSTGRES_USER: sbahadirersoz
+      POSTGRES_PASSWORD: password
+
+      POSTGRES_DB: projectservice-db
+    ports:
+        - 5434:5432
+    volumes:
+      - innovance-projectdb-data:/var/lib/postgresql/data
+  innovance-taskdb:
+    image: postgres
+    environment:
+      POSTGRES_USER: sbahadirersoz
+      POSTGRES_PASSWORD: password
+
+      POSTGRES_DB: taskservice-db
+      PGDATA: /var/lib/postgresql/data
+    ports:
+        - 5435:5432
+    volumes:
+      - innovance-taskdb-data:/var/lib/postgresql/data
+  innovance-rabbitmq:
+    image: rabbitmq:management
+    environment:
+      RABBITMQ_DEFAULT_USER: sbahadirersoz
+      RABBITMQ_DEFAULT_PASS: password
+    ports:
+      - 5672:5672
+      - 15672:15672
+    volumes:
+      - innovance-rabbitmq-data:/var/lib/rabbitmq
+  mail-dev:
+    container_name: mail_dev
+    image: maildev/maildev
+    ports:
+      - 1111:1111     #Send
+      - 2222:2222     #Recieve
+
+volumes:
+  innovance-userdb-data:
+  innovance-projectdb-data:
+  innovance-taskdb-data:
+  innovance-rabbitmq-data:

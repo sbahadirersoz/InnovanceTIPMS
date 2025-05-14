@@ -1,0 +1,21 @@
+eureka:
+  instance:
+    hostname: localhost
+server:
+  port: 8090
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5433/userservice-db
+    username: sbahadirersoz
+    password: password
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+  rabbitmq:
+    host: innovance-rabbitmq
+    port: 5672
+    username: sbahadirersoz
+    password: password
